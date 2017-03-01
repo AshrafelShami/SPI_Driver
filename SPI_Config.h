@@ -57,10 +57,10 @@ typedef enum{
 
 typedef struct{
 	Interrupt_Set	Interrupt_Select;
-	Data			Data_Order;
-	Operation		Operation_Mode;
-	Oscillator		SCK_Frequency;
-	Data_Mode		SPI_Mode;
+	Data		Data_Order;
+	Operation	Operation_Mode;
+	Oscillator	SCK_Frequency;
+	Data_Mode	SPI_Mode;
 	}Struct_SPI;	
 
 void SPI_Init( Struct_SPI );
