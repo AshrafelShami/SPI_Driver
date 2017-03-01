@@ -3,7 +3,7 @@
 int main(){
 	u8 Rx_Data, Data = 0x00;
 	DDRA = 0xFF;
-    Struct_SPI SPI_Init_Struct;
+    	Struct_SPI SPI_Init_Struct;
 	SPI_Init_Struct.Operation_Mode	= Master;
 	SPI_Init_Struct.SCK_Frequency	= Fosc_16;
 	SPI_Init(SPI_Init_Struct);
