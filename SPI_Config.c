@@ -1,6 +1,17 @@
 #include "SPI_Config.h"
 
-void SPI_Init( Struct_SPI SPI_Config){
+/********************************************************************************************
+  Name:     SPI_Init.
+  Purpose:  Initialize SPI registers for ATmega32.
+  Entry:    ( Struct_SPI SPI_Config ) a STRUCT that setup the following.
+							1) Master/Slave mode.
+							2) SCL Frequency.
+							3) Data bits Order.
+							4) Polarity and phare mode.
+							5) Interrupt.
+  Exit:     no parameters
+********************************************************************************************/
+void SPI_Init( Struct_SPI SPI_Config ){
 	switch(SPI_Config.Operation_Mode){
 		case Master : SPCR |= (1U << MSTR);
 			    (*((volatile u8*)(SCL_PIN  + 1))) |= (1U << SCL_Bit);/*	At MASTER SCL Output		*/
@@ -51,6 +62,12 @@ void SPI_Init( Struct_SPI SPI_Config){
 	
 }
 
+/********************************************************************************************
+  Name:     SPI_Transever.
+  Purpose:  API used to send and receive data from and to SPDR register.
+  Entry:    (u8 Data) The transmitted Data.
+  Exit:     (return SPDR) The received Data.
+********************************************************************************************/
 u8 SPI_Transever ( u8 Data ){
 	SPDR = Data;			/*	Send Data to the Data register		*/
 	while (!(SPSR & (1 << SPIF)));	/*	Wait until transmission is complete	
